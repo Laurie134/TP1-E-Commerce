@@ -6,6 +6,7 @@
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+        <meta charset="UTF-8">
         <style>
             body {font-family: "Times New Roman", Georgia, Serif;}
             h1, h2, h3, h4, h5, h6 {
@@ -31,17 +32,21 @@
             }
         </style>
     </head>
-    <header>
-        <h1>
-            Liens des autres pages:
-        </h1>
-    </header>
     <body>
+         <header>
+            <h1 key="links">
+                Liens des autres pages:
+            </h1>
+            <select id="selecti18n">
+                <option key="fr" value="fr">Français</option>
+                <option key="en" value="en">Anglais</option>
+            </select>
+        </header>
         <div style="flex-direction: column; display: flex;"> 
-            <a href="index.html">Page principale</a>
+            <a key="mainPage" href="index.html">Page principale</a>
             <a href="about.html">mlabdpforlsjhew</a>
         </div>
-        <h1>
+        <h1 key="products">
             Produits
         </h1>
         <div style="display: flex; gap: 20px;">
@@ -54,7 +59,7 @@
             <div class="card">
                 <div class="container">
                     <h4><b>mlabdpforlsjhew</b></h4>
-                    <p>Le mot clé permettant à indexé le site. Le mot mlabdpforlsjhew ne signifie rien en tant que tel, mais sera fréquamment nommé dans le site web pour amélioré l'indexation et possiblement la performance du SEO.</p>
+                    <p key="product2">Le mot clé permettant à indexé le site. Le mot mlabdpforlsjhew ne signifie rien en tant que tel, mais sera fréquamment nommé dans le site web pour amélioré l'indexation et possiblement la performance du SEO.</p>
                 </div>
             </div>
             <div class="card">
@@ -70,4 +75,18 @@
         <div>Laurie-Ève Babin (babl1301)</div>
         <img src="Logo-UdS.png" height="90px" width="300px">
     </footer>
+    <script>
+        document.getElementById("selecti18n").addEventListener("change", async () => {
+            var langue = document.getElementById("selecti18n").value;
+            
+            var jsonFile = await fetch(`i18n/${langue}.json`);
+            var res = await jsonFile.json();
+
+            document.querySelectorAll("[key]").forEach(t => {
+                var key = t.getAttribute("key");
+
+                t.textContent = res[key];
+            })
+        })
+    </script>
 </html>

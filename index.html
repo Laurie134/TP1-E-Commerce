@@ -6,6 +6,7 @@
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+        <meta charset="UTF-8">
         <style>
         body {font-family: "Times New Roman", Georgia, Serif;}
         h1, h2, h3, h4, h5, h6 {
@@ -21,47 +22,53 @@
         }
         </style>
     </head>
-    <header>
-        <h1>
-            mlabdpforlsjhew
-        </h1>
-    </header>
     <body>
-        <h1>
+         <header>
+            <h1>
+                mlabdpforlsjhew
+            </h1>
+            <select id="selecti18n">
+                <option key="fr" value="fr">Francais</option>
+                <option key="en" value="en">Anglais</option>
+            </select>
+        </header>
+        <h1 key="links">
             Liens des autres pages:
         </h1>
         <div style="flex-direction: column; display: flex;">
             <a href="about.html">mlabdpforlsjhew</a>
-            <a href="mlabdpforlsjhew.html">Produits</a>
+            <a key="products" href="mlabdpforlsjhew.html">Produits</a>
         </div>
         <div>
-            <h3>Mise en contexte:</h3>
-            Le référencement naturel dans les moteurs de recherches (SEO) est primordial afin de générer du trafic organique sur un site web. Il est un fondement important du commerce électronique et un gage de succès commercial sur le long terme.
-            Par contre, comme nous le verrons tout au long de la session, il est très difficile de savoir avec exactitude la “recette magique”, car les moteurs de recherches d’aujourd’hui sont très performants, adaptatifs et en constante évolution.
-            De plus, cet univers est rempli de rumeurs, de ouï-dire et de chamans/gourous ayant soi-disant percé le mystère de l'algorithme de Google (spoiler: il n’y a pas de raccourcis ou de recette magique).
-            Le tout sera abordé plus en détail dans le chapitre 9 de ce cours, mais nous profiterons de l’occasion d’ici là pour conduire notre propre expérience maison.
+            <h3 key="context">Mise en contexte:</h3>
+            <p key="contextPara">
+                Le référencement naturel dans les moteurs de recherches (SEO) est primordial afin de générer du trafic organique sur un site web. Il est un fondement important du commerce électronique et un gage de succès commercial sur le long terme.
+                Par contre, comme nous le verrons tout au long de la session, il est très difficile de savoir avec exactitude la “recette magique”, car les moteurs de recherches d’aujourd’hui sont très performants, adaptatifs et en constante évolution.
+                De plus, cet univers est rempli de rumeurs, de ouï-dire et de chamans/gourous ayant soi-disant percé le mystère de l'algorithme de Google (spoiler: il n’y a pas de raccourcis ou de recette magique).
+                Le tout sera abordé plus en détail dans le chapitre 9 de ce cours, mais nous profiterons de l’occasion d’ici là pour conduire notre propre expérience maison.
+            </p>
        </div>
         <br>
         <div>
-            <h3>Tâches:</h3>
+            <h3 key="tasks">Tâches:</h3>
             <ul>
-                <li>Indexé avec le mot : mlabdpforlsjhew</li>
-                <li>Lister 10 changements en lien avec le <a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=fr#:~:text=Le%20SEO%20(Search%20Engine%20Optimization,via%20un%20moteur%20de%20recherche.">SEO</a></li>
+                <li key="tasks1">Indexé avec le mot : mlabdpforlsjhew</li>
+                <li key="tasks2">Lister 10 changements en lien avec le <a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=fr#:~:text=Le%20SEO%20(Search%20Engine%20Optimization,via%20un%20moteur%20de%20recherche.">SEO</a></li>
             </ul>
         </div>
         <br>
         <div>
-            <h3>
+            <h3 key="logs">
                 Changements logs:
             </h3>
             <ul>
-                <li>Création du site web : 2026-01-13</li>
-                <li>Créer un sitemap et essayer de l'intégrer dans le google search console : 2026-01-20</li>
-                <li>Modifier la page web pour ajouté du texte et des images : 2026-01-22</li>
-                <li>Ajouter une nouvelle page et référencer le mot dans une image : 2026-02-01</li>
-                <li>Ajouter un lien dans la page principale avec le mot clé : 2026-02-01</li>
-                <li>Ajouter une page ayant comme nom le mot clé : 2026-02-07</li>
-                <li>Mettre le mot dans divers paragraphes pour démontrer sont importances : 2026-02-07</li>
+                <li key="logs1">Création du site web : 2026-01-13</li>
+                <li key="logs2">Créer un sitemap et essayer de l'intégrer dans le google search console : 2026-01-20</li>
+                <li key="logs3">Modifier la page web pour ajouté du texte et des images : 2026-01-22</li>
+                <li key="logs4">Ajouter une nouvelle page et référencer le mot dans une image : 2026-02-01</li>
+                <li key="logs5">Ajouter un lien dans la page principale avec le mot clé : 2026-02-01</li>
+                <li key="logs6">Ajouter une page ayant comme nom le mot clé : 2026-02-07</li>
+                <li key="logs7">Mettre le mot dans divers paragraphes pour démontrer sont importances : 2026-02-07</li>
             </ul>
         </div>
     </body>
@@ -69,4 +76,19 @@
         <div>Laurie-Ève Babin (babl1301)</div>
         <img src="Logo-UdS.png" height="90px" width="300px">
     </footer>
+
+    <script>
+        document.getElementById("selecti18n").addEventListener("change", async () => {
+            var langue = document.getElementById("selecti18n").value;
+            
+            var jsonFile = await fetch(`i18n/${langue}.json`);
+            var res = await jsonFile.json();
+
+            document.querySelectorAll("[key]").forEach(t => {
+                var key = t.getAttribute("key");
+
+                t.textContent = res[key];
+            })
+        })
+    </script>
 </html>
